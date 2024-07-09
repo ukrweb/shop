@@ -1,0 +1,70 @@
+<?php
+// module/Category/view/category/category/index.phtml:
+
+$title = 'Категории';
+$this->headTitle($title);
+?>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Администрирование</li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="./category"><?= $this->escapeHtml($title) ?></a></li>
+  </ol>
+</nav>
+
+<h1><?= $this->escapeHtml($title) ?></h1>
+
+<div class="sp"></div>
+
+<a href="<?= $this->url('category', ['action' => 'add']) ?>">
+    <button type="button" class="btn btn-primary btn-sm">Добавить категорию</button>
+</a>
+
+<div class="sp"></div>
+<div class="sp"></div>
+
+<div class="accordion" id="categoryList">
+  <div class="card">
+<?php 
+function viewCardBodyBegin($category, $level) {
+    ?>
+    <div id="collapse-<?= $category['category_parent_id'] ?>" class="collapse show" aria-labelledby="heading-<?= $category['category_parent_id'] ?>">
+      <div class="card-body accordion-inner"<?php if (!$level) {?> style="padding-left: 0;"<?php } ?>>
+<?php
+}
+function viewCategory($category, $level) {
+    ?>
+        <div class="card-header area<?php if (!$category['category_enable']) {?>-block<?php } ?>" id="heading-<?= $category['category_id'] ?>">
+          <h2 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-parent="#collapse-<?= $category['category_parent_id'] ?>" data-target="#collapse-<?= $category['category_id'] ?>" aria-expanded="true" aria-controls="collapse-<?= $category['category_id'] ?>">
+              <?= $category['category_name'] ?>
+            </button> 
+            <a href="/category/edit/<?= $category['category_id'] ?>"> <i class="fas fa-edit fa-add-style"></i></a>
+          </h2>
+        </div>
+<?php
+}
+function viewCardBodyEnd() {
+    ?>
+      </div>
+    </div>
+<?php
+}
+
+function getTree($categories, $parent = 0, $level = -1) {
+    $level ++;
+    foreach ($categories as $key => $category) {
+        if ($category['category_parent_id'] == $parent) {
+            viewCardBodyBegin($category, $level);
+            viewCategory($category, $level);
+            getTree($categories, $category['category_id'], $level);
+            viewCardBodyEnd();
+        }
+    }
+    return;
+}
+
+getTree($categories);
+?>
+  </div>
+</div>

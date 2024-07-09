@@ -1,0 +1,113 @@
+<?php
+// module/Category/view/category/category/edit.phtml:
+ 
+$title       = 'Редактирование категории "' . $categoryName . '"';
+$parent_page = 'Категории';
+$this->headTitle($title);
+?>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Администрирование</li>
+    <li class="breadcrumb-item" aria-current="page"><a href="/category"><?= $this->escapeHtml($parent_page) ?></a></li>
+    <li class="breadcrumb-item active" aria-current="page"><?= $this->escapeHtml('Редактирование категории') ?></li>
+  </ol>
+</nav>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+ 
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'category',
+    array(
+        'action'      => 'edit',
+        'category_id' => $this->category_id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('category_id'));?>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('category_name')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('category_parent_id')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('oc_category_id')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('category_enable')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('margin_fix')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('margin_percent')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('status')); ?>
+    </div>
+</div>
+
+<?php if (count($supplierCategories)) : ?>
+<div class="sp"></div>
+
+<table id="supplier_category_list" class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th width="1"></th>
+            <th width="1"><input type="checkbox" id="select_all"></th>
+            <th>ID</th>
+            <th>Поставщик</th>
+            <th>Путь и название категории поставщика</th>
+            <th>Уровень</th>
+            <th>Категория</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php foreach ($supplierCategories as $supplierCategory) : ?>
+        <tr>
+            <td></td>
+            <td><input type="checkbox" id="checkbox" name="supplier_categories[]" value="<?= $this->escapeHtml($supplierCategory["supplier_category_id"]) ?>"></td>
+            <td><?= $this->escapeHtml($supplierCategory["supplier_category_id"]) ?></td>
+            <td><?= $this->escapeHtml($supplierCategory["supplier_name"]) ?></td>
+            <td><?= $this->escapeHtml($supplierCategory["supplier_category_path"]) ?></td>
+            <td><?= $this->escapeHtml($supplierCategory["supplier_category_level"]) ?></td>
+            <td><?= $this->escapeHtml($supplierCategory["supplier_category_name"]) ?></td>
+        </tr>
+<?php endforeach; ?>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('supplier_category')); ?>
+    </div>
+</div>
+<?php endif; ?>
+
+<div class="mb-4">
+<?php echo $this->formSubmit($form->get('submit')); ?>
+</div>
+<?php echo $this->form()->closeTag(); ?>

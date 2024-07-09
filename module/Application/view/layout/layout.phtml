@@ -1,0 +1,93 @@
+<?= $this->doctype() ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?= $this->headTitle('Система управления заказами')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?= $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+            ->prependStylesheet($this->basePath('css/shop.css'))
+            ->prependStylesheet('https://use.fontawesome.com/releases/v5.7.0/css/all.css')
+            ->prependStylesheet($this->basePath('css/select2-bootstrap4.min.css'))
+            ->prependStylesheet($this->basePath('css/responsive.dataTables.min.css'))
+            ->prependStylesheet($this->basePath('css/fixedHeader.dataTables.min.css'))
+            ->prependStylesheet('https://cdn.jsdelivr.net/npm/suggestions-jquery@19.4.2/dist/css/suggestions.min.css')
+            ->prependStylesheet($this->basePath('css/dataTables.bootstrap4.min.css'))
+            ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+            ->prependStylesheet($this->basePath('css/select2.min.css'))
+            ->prependStylesheet($this->basePath('css/buttons.bootstrap4.min.css'))
+        ?>
+
+        <!-- Scripts -->
+        <?= $this->headScript()
+            ->prependFile($this->basePath('js/shop.js'))
+            ->prependFile($this->basePath('js/buttons/buttons.print.min.js'))
+            ->prependFile($this->basePath('js/buttons/buttons.html5.min.js'))
+            ->prependFile($this->basePath('js/buttons/buttons.colVis.min.js'))
+            ->prependFile($this->basePath('js/buttons.bootstrap4.min.js'))
+            ->prependFile($this->basePath('js/jszip.min.js'))
+            ->prependFile($this->basePath('js/dataTables.buttons.min.js'))
+            ->prependFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@19.4.2/dist/js/jquery.suggestions.min.js')
+            ->prependFile($this->basePath('js/select2/ru.js'))
+            ->prependFile($this->basePath('js/select2.min.js'))
+            ->prependFile($this->basePath('js/dataTables.responsive.min.js'))
+            ->prependFile($this->basePath('js/dataTables.fixedHeader.min.js'))
+            ->prependFile($this->basePath('js/dataTables.bootstrap4.min.js'))
+            ->prependFile($this->basePath('js/jquery.dataTables.min.js'))
+            ->prependFile($this->basePath('js/datatables.min.js'))
+            ->prependFile($this->basePath('js/bootstrap.min.js'))
+            ->prependFile($this->basePath('js/jquery-3.3.1.min.js'))
+        ?>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e9ecef;">
+            <div class="container">
+                &nbsp;Система управления заказами&nbsp;&nbsp;&nbsp;
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= $this->url('product') ?>">Товары</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= $this->url('contragent') ?>">Контрагенты</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Администрирование
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="<?= $this->url('supplier') ?>">Поставщики</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="<?= $this->url('category') ?>">Категории</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mr-right">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Выход</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container sp">
+            <?= $this->content ?>
+            <hr>
+            <footer>
+                <p>&copy; <?= date('Y') ?> Система управления заказами.</p>
+            </footer>
+        </div>
+        <?= $this->inlineScript() ?>
+    </body>
+</html>

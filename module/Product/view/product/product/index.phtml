@@ -1,0 +1,51 @@
+<?php
+// module/Product/view/product/product/index.phtml:
+
+$title = 'Продукты';
+$this->headTitle($title);
+?>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Администрирование</li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="/product"><?= $this->escapeHtml($title) ?></a></li>
+  </ol>
+</nav>
+
+<h1><?= $this->escapeHtml($title) ?></h1>
+
+<div class="sp"></div>
+<div class="sp"></div>
+
+<table id="product_list" class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Код</th>
+            <th>Фото</th>
+            <th>Название</th>
+            <th>Безубыточная</th>
+            <th>Цена продажи</th>
+            <th>Прибыль</th>
+            <th>Категория</th>
+            <th>Срок доставки</th>
+            <th>Остаток</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php foreach ($products as $product) : ?>
+        <tr data-toggle="modal" data-target="#exampleModal">
+            <td></td>
+            <td><?= $this->escapeHtml($product["product_id"]) ?></td>
+            <td></td>
+            <td><?= $this->escapeHtml($product["name"]) ?></td>
+            <td><?= $this->escapeHtml($product["sell_price_loseless"]) ?></td>
+            <td><?= $this->escapeHtml($product["sell_price_market"]) ?></td>
+            <td><?= $this->escapeHtml($product["sell_price_market"] - $product["sell_price_loseless"]) ?></td>
+            <td><?= $this->escapeHtml($product["category_id"]) ?></td>
+            <td></td>
+            <td></td>
+        </tr>
+<?php endforeach; ?>
+    </tbody>
+</table>

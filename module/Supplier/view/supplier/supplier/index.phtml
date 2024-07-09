@@ -1,0 +1,51 @@
+<?php
+// module/Supplier/view/supplier/supplier/index.phtml:
+
+$title = 'Поставщики';
+$this->headTitle($title);
+?>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Администрирование</li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="/supplier"><?= $this->escapeHtml($title) ?></a></li>
+  </ol>
+</nav>
+
+<h1><?= $this->escapeHtml($title) ?></h1>
+
+<div class="sp"></div>
+
+<a href="<?= $this->url('supplier', ['action' => 'add']) ?>">
+    <button type="button" class="btn btn-primary btn-sm">Добавить поставщика</button>
+</a>
+
+<div class="sp"></div>
+<div class="sp"></div>
+
+<table id="supplier_list" class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Статус</th>
+            <th>Комментарий</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php foreach ($suppliers as $supplier) : ?>
+        <tr>
+            <td></td>
+            <td><?= $this->escapeHtml($supplier->supplier_id) ?></td>
+            <td>
+                <a href="<?= $this->url('supplier', ['action' => 'edit', 'id' => $supplier->supplier_id]) ?>">
+                <?= $this->escapeHtml($supplier->supplier_name) ?>
+                </a>
+            </td>
+            <td><?= ($supplier->status > -1) ? $statusValue[$supplier->status] : '' ?></td>
+            <td class="comment"><?= $this->escapeHtml($supplier->comment) ?></td>
+        </tr>
+<?php endforeach; ?>
+    </tbody>
+</table>

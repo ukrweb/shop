@@ -1,0 +1,53 @@
+<?php
+// module/Contragent/view/contragent/contragent/index.phtml:
+
+$title = 'Контрагенты';
+$this->headTitle($title);
+?>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Администрирование</li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="./contragent"><?= $this->escapeHtml($title) ?></a></li>
+  </ol>
+</nav>
+
+<h1><?= $this->escapeHtml($title) ?></h1>
+
+<div class="sp"></div>
+
+<a href="<?= $this->url('contragent', ['action' => 'add']) ?>">
+    <button type="button" class="btn btn-primary btn-sm">Добавить контрагента</button>
+</a>
+
+<div class="sp"></div>
+<div class="sp"></div>
+
+<table id="contragent_list" class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Название</th>
+            <th>ИНН</th>
+            <th>ОГРН</th>
+            <th>Тип</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php foreach ($contragents as $contragent) : ?>
+        <tr>
+            <td></td>
+            <td><?= $this->escapeHtml($contragent->id) ?></td>
+            <td>
+                <a href="<?= $this->url('contragent', ['action' => 'edit', 'id' => $contragent->id]) ?>">
+                <?= $this->escapeHtml($contragent->value) ?>
+                </a>
+            </td>
+            <td><?= $this->escapeHtml($contragent->data_inn) ?></td>
+            <td><?= $this->escapeHtml($contragent->data_ogrn) ?></td>
+            <td><?= $contragent->data_type > -1 ? $typeValue[$contragent->data_type] : '' ?></td>
+        </tr>
+<?php endforeach; ?>
+    </tbody>
+</table>

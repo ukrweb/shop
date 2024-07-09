@@ -1,0 +1,67 @@
+<?php
+// module/Category/view/category/category/edit.phtml:
+ 
+$title       = 'Добавление категории';
+$parent_page = 'Категории';
+$this->headTitle($title);
+?>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Администрирование</li>
+    <li class="breadcrumb-item" aria-current="page"><a href="/category"><?= $this->escapeHtml($parent_page) ?></a></li>
+    <li class="breadcrumb-item active" aria-current="page"><?= $this->escapeHtml($title) ?></li>
+  </ol>
+</nav>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<div class="sp"></div>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'category',
+    array(
+        'action'      => 'add',
+        'category_id' => $this->category_id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('category_id'));?>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('category_name')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('category_parent_id')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('oc_category_id')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('category_enable')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('margin_fix')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('margin_percent')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('status')); ?>
+    </div>
+</div>
+<div class="mb-4">
+<?php echo $this->formSubmit($form->get('submit')); ?>
+</div>
+<?php echo $this->form()->closeTag(); ?>

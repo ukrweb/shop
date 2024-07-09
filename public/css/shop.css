@@ -1,0 +1,76 @@
+body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.zf-green {
+    color: #68b604;
+}
+
+.btn-success {
+    background-color: #57a900;
+    background-image: -moz-linear-gradient(top, #70d900, #57a900);
+    background-image: -ms-linear-gradient(top, #70d900, #57a900);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#70d900), to(#57a900));
+    background-image: -webkit-linear-gradient(top, #70d900, #57a900);
+    background-image: -o-linear-gradient(top, #70d900, #57a900);
+    background-image: linear-gradient(top, #70d900, #57a900);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70d900', endColorstr='#57a900', GradientType=0);
+}
+
+.btn-success:hover,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] {
+    background-color: #57a900;
+}
+
+div.container a.navbar-brand > img {
+    display: inline;
+    margin-right: 4px;
+    margin-top: -2px;
+}
+
+.comment {
+    width: 60%;
+}
+.sp {
+    padding-top: 10px;
+    padding-bottom: 0px;
+}
+
+@media (max-width: 768px) {
+  div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    justify-content: center !important;
+  }
+}
+.input-error { border-color: red }
+.row ul li { color: red; font-size: small }
+.row ul { margin-bottom: 0rem }
+
+.area { border-left: 4px solid #65c465; padding:0 }
+.area-block { border-left: 4px solid #f38787; padding:0 }
+.area-second { border-left: 4px solid #98b3fa; padding:0 }
+.accordion-inner { padding: 0; padding-left: 1.25rem }
+
+.fa-add-style { vertical-align: middle; font-size: 1rem }
+
+@media (min-width: 768px) {
+	.dataTables_wrapper {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.dataTables_length {
+		width: 200px;
+	}
+	.dt-buttons {
+		margin: -5px auto 5px;
+	}
+	.supplier_list_filter {
+		width: 230px;
+	}
+	div.dataTables_wrapper div.dataTables_paginate {
+		margin: 5px 0 0 auto;
+	}
+}

@@ -1,0 +1,71 @@
+<?php
+// module/Product/view/product/product/edit.phtml:
+ 
+$title       = 'Добавление поставщика';
+$parent_page = 'Поставщики';
+$this->headTitle($title);
+?>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Администрирование</li>
+    <li class="breadcrumb-item" aria-current="page"><a href="/product"><?= $this->escapeHtml($parent_page) ?></a></li>
+    <li class="breadcrumb-item active" aria-current="page"><?= $this->escapeHtml($title) ?></li>
+  </ol>
+</nav>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+ 
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'product',
+    array(
+        'action' => 'add',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+ 
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('product_id'));?>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('product_name')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('email')); ?>
+    </div>
+</div>
+<div class="mb-3">
+<?php echo $this->formRow($form->get('comment')); ?>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('margin_fix')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('margin_percent')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('product_delivery_time')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('default_contragent_id')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('status')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('product_update_interval')); ?>
+    </div>
+</div>
+<div class="mb-4">
+<?php echo $this->formSubmit($form->get('submit')); ?>
+</div>
+<?php echo $this->form()->closeTag(); ?>

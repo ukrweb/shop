@@ -1,0 +1,120 @@
+<?php
+// module/Supplier/view/supplier/supplier/edit.phtml:
+ 
+$title       = 'Редактирование поставщика "' . $supplierName . '"';
+$parent_page = 'Поставщики';
+$this->headTitle($title);
+?>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Администрирование</li>
+    <li class="breadcrumb-item" aria-current="page"><a href="/supplier"><?= $this->escapeHtml($parent_page) ?></a></li>
+    <li class="breadcrumb-item active" aria-current="page"><?= $this->escapeHtml('Редактирование поставщика') ?></li>
+  </ol>
+</nav>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+ 
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'supplier',
+    array(
+        'action' => 'edit',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+ 
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('supplier_id'));?>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('supplier_name')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('email')); ?>
+    </div>
+</div>
+<div class="mb-3">
+<?php echo $this->formRow($form->get('comment')); ?>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('margin_fix')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('margin_percent')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('supplier_delivery_time')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('default_contragent_id')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('status')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('supplier_update_interval')); ?>
+    </div>
+</div>
+<div class="mb-4">
+<?php echo $this->formSubmit($form->get('submit')); ?>
+</div>
+<?php echo $this->form()->closeTag(); ?>
+
+<hr>
+
+<h1><?= $this->escapeHtml('Склады поставщика "') . $supplierName . '"'?></h1>
+
+<div class="sp"></div>
+
+<a href="<?= $this->url('supplier-stock', ['action' => 'add', 'supplier_id' => $this->id]) ?>">
+    <button type="button" class="btn btn-primary btn-sm">Добавить склад</button>
+</a>
+
+<div class="sp"></div>
+<div class="sp"></div>
+<?php if (count($supplierStocks)) {?>
+<table id="supplier_stock_list" class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Срок доставки</th>
+            <th>Наценка (ф.)</th>
+            <th>Наценка (%)</th>
+            <th>Статус</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php foreach ($supplierStocks as $supplierStock) : ?>
+        <tr>
+            <td></td>
+            <td><?= $supplierStock->supplier_stock_id ?></td>
+            <td>
+                <a href="<?= $this->url('supplier-stock', ['action' => 'edit', 'supplier_id' => $id, 'id' => $supplierStock->supplier_stock_id]) ?>">
+                <?= $this->escapeHtml($supplierStock->stock_name) ?>
+                </a>
+            </td>
+            <td><?= $supplierStock->delivery_time ?></td>
+            <td><?= $supplierStock->margin_fix ?></td>
+            <td><?= $supplierStock->margin_percent ?></td>
+            <td><?= ($supplierStock->status > -1) ? $statusValue[$supplierStock->status] : '' ?></td>
+        </tr>
+<?php endforeach; ?>
+    </tbody>
+</table>
+<?php } else { ?>
+<div class="alert alert-primary" role="alert">
+  Складов у поставщика нет.
+</div>
+<?php } ?>

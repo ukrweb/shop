@@ -1,0 +1,164 @@
+<?php
+// module/Contragent/view/contragent/contragent/edit.phtml:
+ 
+$title       = 'Редактирование контрагента "' . $contragentName . '"';
+$parent_page = 'Контрагенты';
+$this->headTitle($title);
+?>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Администрирование</li>
+    <li class="breadcrumb-item" aria-current="page"><a href="/contragent"><?= $this->escapeHtml($parent_page) ?></a></li>
+    <li class="breadcrumb-item active" aria-current="page"><?= $this->escapeHtml('Редактирование контрагента') ?></li>
+  </ol>
+</nav>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+ 
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'contragent',
+    array(
+        'action' => 'edit',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+ 
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));?>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('value')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('unrestricted_value')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_address_value')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_address_unrestricted_value')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_address_data_source')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_address_data_qc')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_branch_count')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_branch_type')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_inn')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_kpp')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_ogrn')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_ogrn_date')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_hid')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_management_name')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_management_post')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_name_full_with_opf')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_name_short_with_opf')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_name_latin')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_name_full')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_name_short')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_okpo')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_okved')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_okved_type')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_opf_code')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_opf_full')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_opf_short')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_opf_type')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_state_actuality_date')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_state_registration_date')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_state_liquidation_date')); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_state_status')); ?>
+    </div>
+    <div class="col-md-6 mb-3">
+<?php echo $this->formRow($form->get('data_type')); ?>
+    </div>
+</div>
+<div class="mb-4">
+<?php echo $this->formSubmit($form->get('submit')); ?>
+</div>
+<?php echo $this->form()->closeTag(); ?>
